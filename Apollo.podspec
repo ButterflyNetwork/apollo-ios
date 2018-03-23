@@ -30,4 +30,8 @@ Pod::Spec.new do |s|
     ss.dependency 'Apollo/Core'
     ss.dependency 'SQLite.swift', '~> 0.11.4'
   end
+
+  s.subspec 'Subscriptions' do |ss|
+    ss.dependency 'Starscream'
+  end
 end

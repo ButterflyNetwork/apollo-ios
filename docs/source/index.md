@@ -18,15 +18,13 @@ This combination of immutable models, one way data flow, and automatic consisten
 
 [Front Page](https://github.com/apollographql/frontpage-ios-app) is the iOS version of the simple "Hello World" app that lives on our [developer site](http://dev.apollodata.com).
 
-[Apollo iOS Quickstart](https://github.com/apollographql/apollo-ios-quickstart) is a collection of sample Xcode projects that make it easy to get started with Apollo iOS.
-
 If you have questions or would like to contribute, please join the `#ios` channel on [Slack](http://www.apollographql.com/slack).
 
 [Apollo Android](https://github.com/apollographql/apollo-android) is a GraphQL client for native Android apps, written in Java.
 
 Apollo Client for JavaScript's [React integration](https://apollographql.com/docs/react) works with [React Native](https://facebook.github.io/react-native/) on both iOS and Android.
 
-We're excited about the prospects of further [unifying the clients for JavaScript, iOS and Android](https://dev-blog.apollodata.com/one-graphql-client-for-javascript-ios-and-android-64993c1b7991), including sharing a cache between native and React Native.
+We're excited about the prospects of further [unifying the clients for JavaScript, iOS and Android](https://blog.apollographql.com/one-graphql-client-for-javascript-ios-and-android-64993c1b7991), including sharing a cache between native and React Native.
 
 <h2 id="learn-more">Other resources</h2>
 

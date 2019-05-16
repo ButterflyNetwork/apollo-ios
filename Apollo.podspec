@@ -11,6 +11,8 @@ Pod::Spec.new do |s|
 
   s.requires_arc = true
 
+  s.swift_version = '4.2'
+
   s.default_subspecs = 'Core'
 
   s.ios.deployment_target = '9.0'
@@ -20,7 +22,7 @@ Pod::Spec.new do |s|
 
   s.subspec 'Core' do |ss|
     ss.source_files = 'Sources/Apollo/*.swift'
-    ss.resource = 'scripts/check-and-run-apollo-cli.sh'
+    ss.resources = ['scripts/check-and-run-apollo-cli.sh', 'scripts/check-and-run-apollo-codegen.sh']
   end
 
   # Apollo provides exactly one persistent cache out-of-the-box, as a reasonable default choice for
@@ -35,7 +37,7 @@ Pod::Spec.new do |s|
   s.subspec 'WebSocket' do |ss|
     ss.source_files = 'Sources/ApolloWebSocket/*.swift'
     ss.dependency 'Apollo/Core'
-    ss.dependency 'Starscream', '~> 3.0.2'
+    ss.dependency 'Starscream', '~> 3.1.0'
   end
 
 end

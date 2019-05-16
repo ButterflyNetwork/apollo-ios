@@ -29,7 +29,9 @@ public typealias OperationResultHandler<Operation: GraphQLOperation> = (_ result
 /// The `ApolloClient` class provides the core API for Apollo. This API provides methods to fetch and watch queries, and to perform mutations.
 public class ApolloClient {
   let networkTransport: NetworkTransport
-  let store: ApolloStore
+    
+  public let store: ApolloStore
+    
   public var cacheKeyForObject: CacheKeyForObject? {
     get {
       return store.cacheKeyForObject
@@ -39,7 +41,7 @@ public class ApolloClient {
       store.cacheKeyForObject = newValue
     }
   }
-  
+    
   private let queue: DispatchQueue
   private let operationQueue: OperationQueue
   
@@ -150,18 +152,21 @@ public class ApolloClient {
         return
       }
       
-      firstly {
-        try response.parseResult(cacheKeyForObject: self.cacheKeyForObject)
-      }.andThen { (result, records) in
-        notifyResultHandler(result: result, error: nil)
+      handlerQueue.async {
         
-        if let records = records {
-          self.store.publish(records: records, context: context).catch { error in
-            preconditionFailure(String(describing: error))
-          }
+        firstly {
+          try response.parseResult(cacheKeyForObject: self.cacheKeyForObject)
+          }.andThen { (result, records) in
+            notifyResultHandler(result: result, error: nil)
+            
+            if let records = records {
+              self.store.publish(records: records, context: context).catch { error in
+                preconditionFailure(String(describing: error))
+              }
+            }
+          }.catch { error in
+            notifyResultHandler(result: nil, error: error)
         }
-      }.catch { error in
-        notifyResultHandler(result: nil, error: error)
       }
     }
   }
